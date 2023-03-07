@@ -10,23 +10,33 @@ export class TennisSet {
   constructor() {}
 
   updateSetStatus(player: TennisMatchEnum): void {
-    if(player === TennisMatchEnum.PLAYER_1) {
-      if(this.gamesPlayerOne >= TennisSetEnum.NUMBER_OF_GAMES_TO_WIN) {
-        if(this.gamesPlayerOne - this.gamesPlayerTwo >= 2) {
-          this.isTerminated = true;
-        }
-        if(this.gamesPlayerTwo === TennisSetEnum.NUMBER_OF_GAMES_TO_WIN) {
-          this.onTieBreak = true;
-        }
+    if(this.onTieBreak) {
+      if(this.gamesPlayerOne > this.gamesPlayerTwo) {
+        this.isTerminated = true;
+      }
+      else if(this.gamesPlayerOne < this.gamesPlayerTwo) {
+        this.isTerminated = true;
       }
     }
-    else if(player === TennisMatchEnum.PLAYER_2) {
-      if(this.gamesPlayerTwo >= TennisSetEnum.NUMBER_OF_GAMES_TO_WIN) {
-        if(this.gamesPlayerTwo - this.gamesPlayerOne >= 2) {
-          this.isTerminated = true;
+    else {
+      if(player === TennisMatchEnum.PLAYER_1) {
+        if(this.gamesPlayerOne >= TennisSetEnum.NUMBER_OF_GAMES_TO_WIN) {
+          if(this.gamesPlayerOne - this.gamesPlayerTwo >= TennisSetEnum.MINIMUM_DIFFERENCE_OF_GAMES_TO_WIN) {
+            this.isTerminated = true;
+          }
+          if(this.gamesPlayerTwo === TennisSetEnum.NUMBER_OF_GAMES_TO_WIN) {
+            this.onTieBreak = true;
+          }
         }
-        if(this.gamesPlayerOne === TennisSetEnum.NUMBER_OF_GAMES_TO_WIN) {
-          this.onTieBreak = true;
+      }
+      else if(player === TennisMatchEnum.PLAYER_2) {
+        if(this.gamesPlayerTwo >= TennisSetEnum.NUMBER_OF_GAMES_TO_WIN) {
+          if(this.gamesPlayerTwo - this.gamesPlayerOne >= TennisSetEnum.MINIMUM_DIFFERENCE_OF_GAMES_TO_WIN) {
+            this.isTerminated = true;
+          }
+          if(this.gamesPlayerOne === TennisSetEnum.NUMBER_OF_GAMES_TO_WIN) {
+            this.onTieBreak = true;
+          }
         }
       }
     }

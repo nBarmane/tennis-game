@@ -11,10 +11,10 @@
   <div class="score-board-wrapper">
     <p><b>Score : </b>{{tennisMatch.matchScore}}</p>
     <p *ngIf="matchInProgress && !tennisMatch.onTieBreak"><b>Current game status : </b>{{tennisMatch.currentGameStatus}}</p>
-    <p *ngIf="matchInProgress && tennisMatch.onTieBreak"><b>Tie-break status : </b>...</p>
+    <p *ngIf="matchInProgress && tennisMatch.onTieBreak"><b>Tie-break status : </b>{{tennisMatch.currentTieBreakStatus}}</p>
     
     <br>
-    <p><b>Match status : </b>{{tennisMatch.matchStatus}}</p>
+    <p><b>Match status : </b>{{tennisMatch.matchStatus}} {{tennisMatch.allSetsScore}}</p>
   </div>
 
   <br>
