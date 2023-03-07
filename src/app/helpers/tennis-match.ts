@@ -8,6 +8,7 @@ export class TennisMatch {
   currentGame: TennisGame = new TennisGame();
   currentSet: TennisSet = new TennisSet();
   sets: Array<TennisSet> = [this.currentSet];
+  scores: Array<string> = [TennisMatchEnum.INITIAL_MATCH_SCORE];
 
   // scoreBoard
   matchScore: string = TennisMatchEnum.INITIAL_MATCH_SCORE;
@@ -23,24 +24,19 @@ export class TennisMatch {
   initMatch() {
     this.currentGame = new TennisGame();
     this.currentSet = new TennisSet();
-    this.sets = [];
+    this.sets = [this.currentSet];
+    this.scores = [TennisMatchEnum.INITIAL_MATCH_SCORE];
 
     this.matchScore = TennisMatchEnum.INITIAL_MATCH_SCORE;
     this.currentGameStatus = TennisGameEnum.ZERO_ZERO;
     this.matchStatus = TennisMatchEnum.MATCH_IN_PROGRESS;
     
     this.onTieBreak = false;
-
-    this.sets.push(this.currentSet);
   }
 
-  buildMatchScore() {
-    let score = "";
-    this.sets.forEach((set, index) => {
-      score += `(${set.gamesPlayerOne}-${set.gamesPlayerTwo}) `;
-    });
-
-    return score;
+  buildMatchScore(): void {
+    let lastSet = this.sets[this.sets.length - 1];
+    this.scores[this.scores.length - 1] = `(${lastSet.gamesPlayerOne}-${lastSet.gamesPlayerTwo})`;
   }
 
   givePointPlayerOne() {
@@ -52,7 +48,8 @@ export class TennisMatch {
   }
 
   updateScoreBoard() {
-    this.matchScore = this.buildMatchScore();
+    this.buildMatchScore();
+    this.matchScore = this.scores.join(" ");
     this.currentGameStatus = this.currentGame.getStatus();
     // this.matchStatus = ...;
   }
@@ -74,8 +71,11 @@ export class TennisMatch {
     }
 
     if(this.currentSet.isTerminated) {
-      this.currentSet = new TennisSet();
       this.onTieBreak = false;
+
+      this.currentSet = new TennisSet();
+      this.sets.push(this.currentSet);
+      this.scores.push("");
     }
     if(this.currentSet.onTieBreak) {
       this.onTieBreak = true;

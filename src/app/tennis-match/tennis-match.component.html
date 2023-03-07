@@ -1,20 +1,22 @@
 <div class="main-container">
-  <h3>Tennis Game ScoreBoard</h3>
+  <h1>Tennis Game ScoreBoard</h1>
 
-  <button (click)="givePointToPlayerOne()">Player 1</button>
-  <button (click)="givePointToPlayerTwo()">Player 2</button>
+  <div class="buttons-container" *ngIf="matchInProgress">
+    <button (click)="givePointToPlayerOne()">+ Player 1</button>
+    <button (click)="givePointToPlayerTwo()">+ Player 2</button>
+  </div>
   
   <br><br>
 
-  <button (click)="initMatch()">Restart match</button>
-
-  <br><br><br>
-
-  <div>
+  <div class="score-board-wrapper">
     <p><b>Score : </b>{{tennisMatch.matchScore}}</p>
-    <p><b>Current game status : </b>{{tennisMatch.currentGameStatus}}</p>
+    <p *ngIf="matchInProgress && !tennisMatch.onTieBreak"><b>Current game status : </b>{{tennisMatch.currentGameStatus}}</p>
+    <p *ngIf="matchInProgress && tennisMatch.onTieBreak"><b>Tie-break status : </b>{{tennisMatch.currentGameStatus}}</p>
     
     <br>
     <p><b>Match status : </b>{{tennisMatch.matchStatus}}</p>
   </div>
+
+  <br>
+  <button (click)="initMatch()">Restart match</button>
 </div>

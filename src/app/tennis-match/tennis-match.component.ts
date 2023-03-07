@@ -9,9 +9,7 @@ import { TennisMatch } from '../helpers/tennis-match';
 })
 export class TennisMatchComponent implements OnInit {
 
-  score: string = "";
-  currentGameStatus: string = "";
-  matchStatus: string = "";
+  matchInProgress: boolean = true;
 
   tennisMatch: TennisMatch = new TennisMatch();
 
@@ -21,13 +19,16 @@ export class TennisMatchComponent implements OnInit {
 
   givePointToPlayerOne() {
     this.tennisMatch.givePointPlayerOne();
+    this.matchInProgress = this.tennisMatch.matchStatus == TennisMatchEnum.MATCH_IN_PROGRESS;
   }
-
+  
   givePointToPlayerTwo() {
     this.tennisMatch.givePointPlayerTwo();
+    this.matchInProgress = this.tennisMatch.matchStatus == TennisMatchEnum.MATCH_IN_PROGRESS;
   }
 
   initMatch() {
     this.tennisMatch.initMatch();
+    this.matchInProgress = true;
   }
 }

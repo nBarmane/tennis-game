@@ -1,3 +1,17 @@
 .main-container {
   width: 600px;
 }
+.buttons-container {
+  width: 280px;
+  display: flex;
+  justify-content: space-between;
+}
+.buttons-container button {
+  font-size: 14pt;
+  padding: 4px 8px;
+}
+.score-board-wrapper {
+  font-size: 16pt;
+  border: solid 1px black;
+  padding: 0px 15px;
+}
