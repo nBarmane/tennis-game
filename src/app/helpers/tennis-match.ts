@@ -102,7 +102,7 @@ export class TennisMatch {
       }
       else {
         this.currentTieBreak.givePointPlayerTwo();
-        if(this.currentTieBreak.getStatus() === TennisTieBreakEnum.PLAYER_ONE_WINS) {
+        if(this.currentTieBreak.getStatus() === TennisTieBreakEnum.PLAYER_TWO_WINS) {
           this.currentSet.addGamePlayerTwo();
         }
       }
