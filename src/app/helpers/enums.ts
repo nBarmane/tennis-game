@@ -3,14 +3,14 @@ export enum TennisMatchEnum {
   PLAYER_ONE_WINS = "Player1 wins",
   PLAYER_TWO_WINS = "Player2 wins",
 
-  INITIAL_MATCH_SCORE = "(0-0)",
+  INITIAL_SCORE = "(0-0)",
 
   PLAYER_1 = "p1",
   PLAYER_2 = "p2"
 }
 
 export enum TennisSetEnum {
-  MAXIMUM_GAMES_PER_SET = 6
+  NUMBER_OF_GAMES_TO_WIN = 6
 }
 
 export enum TennisGameEnum {
