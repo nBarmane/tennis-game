@@ -1,0 +1,20 @@
+<div class="main-container">
+  <h3>Tennis Game ScoreBoard</h3>
+
+  <button (click)="givePointToPlayerOne()">Player 1</button>
+  <button (click)="givePointToPlayerTwo()">Player 2</button>
+  
+  <br><br>
+
+  <button (click)="initMatch()">Restart match</button>
+
+  <br><br><br>
+
+  <div>
+    <p><b>Score : </b>{{tennisMatch.matchScore}}</p>
+    <p><b>Current game status : </b>{{tennisMatch.currentGameStatus}}</p>
+    
+    <br>
+    <p><b>Match status : </b>{{tennisMatch.matchStatus}}</p>
+  </div>
+</div>
